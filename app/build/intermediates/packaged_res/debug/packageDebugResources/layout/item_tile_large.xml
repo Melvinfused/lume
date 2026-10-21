@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_container"
+    android:layout_width="290dp"
+    android:layout_height="165dp"
+    android:layout_marginEnd="16dp"
+    android:background="@drawable/bg_acrylic_card"
+    android:clipToOutline="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:padding="16dp">
+
+    <!-- Tint overlay for Metro colored acrylic effect -->
+    <View
+        android:id="@+id/card_tint_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#30B91D47" />
+
+    <!-- App Icon from System -->
+    <ImageView
+        android:id="@+id/img_app_icon"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="14dp"
+        android:contentDescription="App Icon"
+        android:scaleType="fitCenter" />
+
+    <!-- App Label at Bottom-Left -->
+    <TextView
+        android:id="@+id/txt_app_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="80dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+
+</RelativeLayout>

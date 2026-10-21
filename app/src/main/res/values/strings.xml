@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Metro TV Launcher</string>
+    <string name="greeting_morning">Good Morning</string>
+    <string name="greeting_afternoon">Good Afternoon</string>
+    <string name="greeting_evening">Good Evening</string>
+    <string name="greeting_night">Good Night</string>
+    <string name="default_datetime">10:30 AM | Wednesday, Oct 21</string>
+    
+    <!-- Tiles -->
+    <string name="app_netflix">Netflix</string>
+    <string name="app_prime">Amazon Prime</string>
+    <string name="app_youtube">YouTube</string>
+    <string name="app_vlc">VLC</string>
+    <string name="app_music">Music</string>
+    <string name="app_files">Files</string>
+    
+    <!-- Actions -->
+    <string name="live_now_playing">LIVE now playing</string>
+    <string name="action_open_app">Open %s</string>
+    <string name="app_not_installed">%s is not installed. Opening Google Play...</string>
+</resources>

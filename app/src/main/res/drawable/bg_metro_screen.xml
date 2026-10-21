@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="1920dp"
+    android:height="1080dp"
+    android:viewportWidth="1920"
+    android:viewportHeight="1080">
+
+    <!-- Deep Petrol Teal Base Gradient -->
+    <path
+        android:pathData="M0,0 H1920 V1080 H0 Z"
+        android:fillColor="#072B31" />
+
+    <!-- Subtle darker top/bottom vignetting -->
+    <path
+        android:pathData="M0,0 H1920 V300 H0 Z"
+        android:fillColor="#15000000" />
+    <path
+        android:pathData="M0,780 H1920 V1080 H0 Z"
+        android:fillColor="#25000000" />
+
+    <!-- Neon Yellow / Lime Green Ribbon Wave 1 (Crossing from top-right downwards) -->
+    <path
+        android:strokeColor="#70B5D335"
+        android:strokeWidth="12"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M1150,-50 C1100,200 1250,550 1520,700 C1720,800 1950,750 2050,700" />
+    <path
+        android:strokeColor="#90CADB2A"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M650,1080 C670,900 800,600 1150,380 C1380,240 1620,100 1780,-50" />
+
+    <!-- Emerald / Green Ribbon Wave 2 -->
+    <path
+        android:strokeColor="#6000A86B"
+        android:strokeWidth="14"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M1300,120 C1450,280 1750,420 2000,400" />
+    <path
+        android:strokeColor="#4500FF88"
+        android:strokeWidth="3"
+        android:fillColor="#00000000"
+        android:pathData="M1280,100 C1440,270 1740,410 2000,390" />
+
+    <!-- Cyan / Light Blue Sweeping Ribbon Across Bottom -->
+    <path
+        android:strokeColor="#3500B4D8"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:pathData="M-50,480 C320,620 750,720 1200,680 C1550,650 1850,720 2050,820" />
+    <path
+        android:strokeColor="#2500E5FF"
+        android:strokeWidth="1.5"
+        android:fillColor="#00000000"
+        android:pathData="M-50,520 C340,660 770,760 1220,710 C1570,670 1870,740 2050,850" />
+    <path
+        android:strokeColor="#18FFFFFF"
+        android:strokeWidth="1.2"
+        android:fillColor="#00000000"
+        android:pathData="M-50,560 C360,700 790,800 1240,740 C1590,690 1890,760 2050,880" />
+
+    <!-- Fine Geometric Hatching Curves (Characteristic Windows 8 Metro Lines on Left) -->
+    <path
+        android:strokeColor="#12FFFFFF"
+        android:strokeWidth="1"
+        android:fillColor="#00000000"
+        android:pathData="M-80,280 C200,450 400,750 420,1150" />
+    <path
+        android:strokeColor="#10FFFFFF"
+        android:strokeWidth="1"
+        android:fillColor="#00000000"
+        android:pathData="M-80,320 C180,470 380,770 400,1150" />
+    <path
+        android:strokeColor="#0CFFFFFF"
+        android:strokeWidth="1"
+        android:fillColor="#00000000"
+        android:pathData="M-80,360 C160,490 360,790 380,1150" />
+
+    <!-- Windows 8 Metro Four-Point Diamond Stars in Bottom-Right Corner -->
+    <!-- Large Diamond Star -->
+    <path
+        android:fillColor="#228ECFD6"
+        android:pathData="M1720,840 C1720,810 1700,790 1670,790 C1700,790 1720,770 1720,740 C1720,770 1740,790 1770,790 C1740,790 1720,810 1720,840 Z" />
+    <!-- Medium Diamond Star -->
+    <path
+        android:fillColor="#28B8E8EE"
+        android:pathData="M1760,790 C1760,770 1748,755 1728,755 C1748,755 1760,740 1760,720 C1760,740 1772,755 1792,755 C1772,755 1760,770 1760,790 Z" />
+    <!-- Small Diamond Star -->
+    <path
+        android:fillColor="#35D0F5FA"
+        android:pathData="M1840,880 C1840,860 1826,845 1806,845 C1826,845 1840,830 1840,810 C1840,830 1854,845 1874,845 C1854,845 1840,860 1840,880 Z" />
+
+</vector>

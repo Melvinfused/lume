@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="150dp"
+    android:height="100dp"
+    android:viewportWidth="150"
+    android:viewportHeight="100">
+    <!-- TV Stand Base -->
+    <path
+        android:fillColor="#151A1E"
+        android:pathData="M60,92 L90,92 L92,95 L58,95 Z" />
+    <path
+        android:fillColor="#222A30"
+        android:pathData="M73,85 L77,85 L77,92 L73,92 Z" />
+    <!-- TV Outer Bezel -->
+    <path
+        android:fillColor="#101418"
+        android:pathData="M6,6 H144 V85 H6 Z" />
+    <!-- TV Inner Screen Surface -->
+    <path
+        android:fillColor="#1E272E"
+        android:pathData="M9,9 H141 V82 H9 Z" />
+    <!-- Live Scene Thumbnail Backdrop Graphic -->
+    <path
+        android:fillColor="#2C3A47"
+        android:pathData="M9,9 H141 V82 H9 Z" />
+    <path
+        android:fillColor="#3D4E5E"
+        android:pathData="M50,30 C50,22 58,16 68,16 C78,16 86,22 86,30 L86,48 C78,48 70,55 60,65 L50,65 Z" />
+    <path
+        android:fillColor="#182C3D"
+        android:pathData="M9,62 L40,45 L75,70 L110,50 L141,75 L141,82 L9,82 Z" />
+    <!-- Red Playback Progress Line -->
+    <path
+        android:fillColor="#E50914"
+        android:pathData="M14,78 H80 V80 H14 Z" />
+    <path
+        android:fillColor="#55FFFFFF"
+        android:pathData="M80,78 H136 V80 H80 Z" />
+</vector>
