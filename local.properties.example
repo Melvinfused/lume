@@ -1,0 +1,14 @@
+## Android TV Launcher - Local Properties Template
+## Copy this file to 'local.properties' and set your Android SDK directory.
+##
+## DO NOT commit your actual 'local.properties' file to version control.
+## It is automatically ignored in .gitignore.
+
+# Windows Example:
+# sdk.dir=C\:\\Users\\<YourUsername>\\AppData\\Local\\Android\\Sdk
+
+# macOS Example:
+# sdk.dir=/Users/<YourUsername>/Library/Android/sdk
+
+# Linux Example:
+# sdk.dir=/home/<YourUsername>/Android/Sdk

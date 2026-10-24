@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
@@ -8,7 +9,7 @@
     android:clipToPadding="false"
     tools:context=".MainActivity">
 
-    <!-- 1. Background Image: Provided purple ribbon wallpaper with aspect-ratio preserved -->
+    <!-- 1. Background Image: Custom or Default teal wave wallpaper with aspect-ratio preserved -->
     <ImageView
         android:id="@+id/img_wallpaper"
         android:layout_width="match_parent"
@@ -17,163 +18,896 @@
         android:scaleType="centerCrop"
         android:src="@drawable/bg_tv_wallpaper" />
 
-    <!-- 2. Main Content Stack -->
-    <RelativeLayout
-        android:id="@+id/main_content_layer"
+    <!-- 2. Android TV-style Home-Screen Background Dimming Overlay (35% opacity) -->
+    <View
+        android:id="@+id/wallpaper_dim_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:paddingTop="30dp"
-        android:paddingBottom="48dp">
+        android:background="#59000000" />
 
-        <!-- TOP HEADER: Greeting, Date/Time & Segoe MDL2 Status Icons -->
-        <RelativeLayout
-            android:id="@+id/header_layout"
+    <!-- 3. Masked Scroll Container: Applies vertical progressive alpha gradient to scrolling tiles -->
+    <com.metrolauncher.tv.MaskedScrollContainer
+        android:id="@+id/masked_scroll_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/main_scroll_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_height="match_parent"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:paddingStart="64dp"
-            android:paddingEnd="64dp">
+            android:fillViewport="true"
+            android:scrollbars="none">
 
-            <!-- Header Left: Greeting & Date/Time in Segoe UI -->
+        <LinearLayout
+            android:id="@+id/main_content_layer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingTop="120dp"
+            android:paddingBottom="40dp">
+
+            <!-- TOP HEADER: Greeting, Home Now Playing & Header Controls -->
+            
+
+            <!-- ROWS STACK -->
             <LinearLayout
-                android:id="@+id/header_left"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
+                android:layout_marginTop="16dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_greeting"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/segoeui"
-                    android:text="@string/greeting_morning"
-                    android:textColor="@color/white"
-                    android:textSize="38sp"
-                    android:textStyle="normal" />
+                <!-- 1. METRO INFORMATION WIDGET TILES ROW (Clock, Weather 3D-Flip, Now Playing Slide) -->
+                <LinearLayout
+                    android:id="@+id/row_widget_tiles"
+                    android:layout_width="match_parent"
+                    android:layout_height="146dp"
+                    android:layout_marginBottom="12dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="64dp"
+                    android:paddingEnd="64dp">
 
-                <!-- Current Weather in Aluva, Kerala between Greeting and Date/Time -->
-                <TextView
-                    android:id="@+id/tv_weather"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:fontFamily="@font/segoeui"
-                    android:text="⛅ 26°C • Aluva, Kerala"
-                    android:textColor="@color/white_80"
-                    android:textSize="17sp" />
+                    <!-- TILE 1: CLOCK (Static: 12-hour format, weekday, full date) -->
+                    <FrameLayout
+                        android:id="@+id/widget_tile_clock"
+                        android:layout_width="250dp"
+                        android:layout_height="140dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/bg_acrylic_tile_dark"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:nextFocusDown="@+id/grid_row_1">
 
-                <TextView
-                    android:id="@+id/tv_datetime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:fontFamily="@font/segoeui"
-                    android:text="@string/default_datetime"
-                    android:textColor="@color/white_80"
-                    android:textSize="15sp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp">
+
+                            <!-- Large 12-hour Time (e.g. 1:42 PM) -->
+                            <TextView
+                                android:id="@+id/tv_widget_clock_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/segoeui"
+                                android:includeFontPadding="false"
+                                android:letterSpacing="-0.02"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="2"
+                                android:shadowRadius="6"
+                                android:text="1:42 PM"
+                                android:textColor="@color/white"
+                                android:textSize="32sp"
+                                android:textStyle="bold" />
+
+                            <!-- Full Weekday (e.g. Thursday) -->
+                            <TextView
+                                android:id="@+id/tv_widget_clock_weekday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/segoeui"
+                                android:includeFontPadding="false"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="2"
+                                android:shadowRadius="5"
+                                android:text="Thursday"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
+
+                            <!-- Full Date (e.g. 22 October 2026) -->
+                            <TextView
+                                android:id="@+id/tv_widget_clock_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:fontFamily="@font/segoeui"
+                                android:includeFontPadding="false"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="2"
+                                android:shadowRadius="5"
+                                android:text="22 October 2026"
+                                android:textColor="@color/white_80"
+                                android:textSize="13sp" />
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <!-- TILE 2: WEATHER (Vertical 3D flip between Current & Forecast) -->
+                    <FrameLayout
+                        android:id="@+id/widget_tile_weather"
+                        android:layout_width="250dp"
+                        android:layout_height="140dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/bg_acrylic_tile_dark"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:nextFocusDown="@+id/grid_row_1">
+
+                        <!-- FRONT FACE: Current Weather -->
+                        <RelativeLayout
+                            android:id="@+id/weather_tile_front"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="16dp">
+
+                            <!-- Top row: Temperature & Meteocons Monochrome Icon -->
+                            <LinearLayout
+                                android:id="@+id/weather_front_top"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_widget_weather_temp"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/segoeui"
+                                    android:includeFontPadding="false"
+                                    android:shadowColor="#CC000000"
+                                    android:shadowDx="0"
+                                    android:shadowDy="2"
+                                    android:shadowRadius="6"
+                                    android:text="27°C"
+                                    android:textColor="@color/white"
+                                    android:textSize="32sp"
+                                    android:textStyle="bold" />
+
+                                <ImageView
+                                    android:id="@+id/img_widget_weather_icon"
+                                    android:layout_width="44dp"
+                                    android:layout_height="44dp"
+                                    android:contentDescription="Weather Icon"
+                                    android:src="@drawable/ic_meteo_drizzle" />
+
+                            </LinearLayout>
+
+                            <!-- Bottom: Condition & City -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv_widget_weather_condition"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/segoeui"
+                                    android:shadowColor="#CC000000"
+                                    android:shadowDx="0"
+                                    android:shadowDy="2"
+                                    android:shadowRadius="5"
+                                    android:text="Drizzle"
+                                    android:textColor="@color/white"
+                                    android:textSize="15sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_widget_weather_location"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/segoeui"
+                                    android:maxLines="1"
+                                    android:shadowColor="#CC000000"
+                                    android:shadowDx="0"
+                                    android:shadowDy="2"
+                                    android:shadowRadius="5"
+                                    android:text="Aluva, Kerala"
+                                    android:textColor="@color/white_80"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <!-- BACK FACE: Today's Forecast (Rotated/Revealed on 3D flip) -->
+                        <LinearLayout
+                            android:id="@+id/weather_tile_back"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/tv_forecast_line1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/segoeui"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="2"
+                                android:shadowRadius="5"
+                                android:text="2 PM · 27°C · 40% rain"
+                                android:textColor="@color/white"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tv_forecast_line2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/segoeui"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="2"
+                                android:shadowRadius="5"
+                                android:text="3 PM · 26°C · 65% rain"
+                                android:textColor="@color/white"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:id="@+id/tv_forecast_line3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/segoeui"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="2"
+                                android:shadowRadius="5"
+                                android:text="Today · High 29° · Low 24°"
+                                android:textColor="@color/white_80"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <!-- TILE 3: NOW PLAYING (Horizontal slide between Metadata & Artwork) -->
+                    <FrameLayout
+                        android:id="@+id/widget_tile_now_playing"
+                        android:layout_width="250dp"
+                        android:layout_height="140dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/bg_acrylic_tile_dark"
+                        android:clipChildren="true"
+                        android:clipToPadding="true"
+                        android:clipToOutline="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:nextFocusDown="@+id/grid_row_1"
+                        android:visibility="gone">
+
+                        <!-- FRONT FACE: Track Metadata (Slide container) -->
+                        <LinearLayout
+                            android:id="@+id/np_tile_front"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:paddingStart="18dp"
+                            android:paddingEnd="18dp">
+
+                            <TextView
+                                android:id="@+id/tv_widget_np_source"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:fontFamily="@font/segoeui"
+                                android:letterSpacing="0.08"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="1"
+                                android:shadowRadius="4"
+                                android:text="SPOTIFY"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white_60"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tv_widget_np_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/segoeui"
+                                android:maxLines="2"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="2"
+                                android:shadowRadius="6"
+                                android:text="Midnight City"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tv_widget_np_artist"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/segoeui"
+                                android:maxLines="1"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="2"
+                                android:shadowRadius="5"
+                                android:text="M83"
+                                android:textColor="@color/white_80"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_widget_np_album"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/segoeui"
+                                android:maxLines="1"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="2"
+                                android:shadowRadius="5"
+                                android:text="Hurry Up, We're Dreaming"
+                                android:textColor="@color/white_60"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+                        <!-- ALTERNATE FACE: Artwork & Release Info -->
+                        <LinearLayout
+                            android:id="@+id/np_tile_back"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:visibility="gone">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginEnd="14dp"
+                                app:cardCornerRadius="4dp"
+                                app:cardElevation="0dp">
+
+                                <ImageView
+                                    android:id="@+id/img_widget_np_artwork"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#40000000"
+                                    android:contentDescription="Album Art"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/ic_music_note" />
+
+                            </androidx.cardview.widget.CardView>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv_widget_np_release"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/segoeui"
+                                    android:maxLines="2"
+                                    android:shadowColor="#CC000000"
+                                    android:shadowDx="0"
+                                    android:shadowDy="2"
+                                    android:shadowRadius="5"
+                                    android:text="Hurry Up, We're Dreaming"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tv_widget_np_release_type"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:fontFamily="@font/segoeui"
+                                    android:shadowColor="#CC000000"
+                                    android:shadowDx="0"
+                                    android:shadowDy="2"
+                                    android:shadowRadius="5"
+                                    android:text="Album"
+                                    android:textColor="@color/white_80"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- CONTROLS FACE: Track Info Above + Prev, Play/Pause, Next Controls Below -->
+                        <LinearLayout
+                            android:id="@+id/np_tile_controls"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingStart="14dp"
+                            android:paddingTop="12dp"
+                            android:paddingEnd="14dp"
+                            android:paddingBottom="12dp"
+                            android:visibility="gone">
+
+                            <!-- Source indicator above -->
+                            <TextView
+                                android:id="@+id/tv_widget_np_ctrl_source"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:fontFamily="@font/segoeui"
+                                android:letterSpacing="0.08"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="1"
+                                android:shadowRadius="4"
+                                android:text="SPOTIFY"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white_60"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                            <!-- Track title above -->
+                            <TextView
+                                android:id="@+id/tv_widget_np_ctrl_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/segoeui"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="2"
+                                android:shadowRadius="5"
+                                android:text="Song Title"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <!-- Artist name above -->
+                            <TextView
+                                android:id="@+id/tv_widget_np_ctrl_artist"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/segoeui"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="2"
+                                android:shadowRadius="4"
+                                android:text="Artist Name"
+                                android:textColor="@color/white_80"
+                                android:textSize="12sp" />
+
+                            <!-- Transport Controls (Prev, Play/Pause, Next) -->
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <!-- Previous Track -->
+                                <TextView
+                                    android:id="@+id/btn_tile_np_prev"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:background="@null"
+                                    android:clickable="true"
+                                    android:contentDescription="Previous Track"
+                                    android:focusable="true"
+                                    android:focusableInTouchMode="true"
+                                    android:fontFamily="@font/segmdl2"
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:text="&#xE892;"
+                                    android:textColor="@color/white_80"
+                                    android:textSize="20sp" />
+
+                                <!-- Play / Pause -->
+                                <TextView
+                                    android:id="@+id/btn_tile_np_play_pause"
+                                    android:layout_width="46dp"
+                                    android:layout_height="46dp"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:background="@null"
+                                    android:clickable="true"
+                                    android:contentDescription="Play or Pause"
+                                    android:focusable="true"
+                                    android:focusableInTouchMode="true"
+                                    android:fontFamily="@font/segmdl2"
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:text="&#xE768;"
+                                    android:textColor="@color/white"
+                                    android:textSize="26sp" />
+
+                                <!-- Next Track -->
+                                <TextView
+                                    android:id="@+id/btn_tile_np_next"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:background="@null"
+                                    android:clickable="true"
+                                    android:contentDescription="Next Track"
+                                    android:focusable="true"
+                                    android:focusableInTouchMode="true"
+                                    android:fontFamily="@font/segmdl2"
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:text="&#xE893;"
+                                    android:textColor="@color/white_80"
+                                    android:textSize="20sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <!-- TILE 4: CONTINUE WATCHING (Single latest watched video across supported video apps) -->
+                    <FrameLayout
+                        android:id="@+id/widget_tile_continue_watching"
+                        android:layout_width="250dp"
+                        android:layout_height="140dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/bg_acrylic_tile_dark"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:nextFocusDown="@+id/grid_row_1"
+                        android:visibility="gone">
+
+                        <!-- Artwork / Thumbnail ImageView -->
+                        <ImageView
+                            android:id="@+id/img_widget_cw_thumb"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:contentDescription="Continue Watching Artwork" />
+
+                        <!-- Dark gradient scrim over artwork for typography contrast -->
+                        <View
+                            android:id="@+id/scrim_widget_cw"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_card_bottom_gradient" />
+
+                        <!-- Content Layout -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="bottom"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <!-- Source App Label (e.g. NETFLIX, YOUTUBE, VLC) -->
+                            <TextView
+                                android:id="@+id/tv_widget_cw_source"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/segoeui"
+                                android:letterSpacing="0.08"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="1"
+                                android:shadowRadius="4"
+                                android:text="CONTINUE WATCHING"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white_60"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                            <!-- Video Title -->
+                            <TextView
+                                android:id="@+id/tv_widget_cw_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/segoeui"
+                                android:maxLines="2"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="2"
+                                android:shadowRadius="5"
+                                android:text="Latest Video"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <!-- Subtitle / Episode Title -->
+                            <TextView
+                                android:id="@+id/tv_widget_cw_subtitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/segoeui"
+                                android:maxLines="1"
+                                android:shadowColor="#CC000000"
+                                android:shadowDx="0"
+                                android:shadowDy="1"
+                                android:shadowRadius="4"
+                                android:text=""
+                                android:textColor="@color/white_80"
+                                android:textSize="12sp"
+                                android:visibility="gone" />
+
+                            <!-- Progress Bar -->
+                            <ProgressBar
+                                android:id="@+id/pb_widget_cw_progress"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="3dp"
+                                android:layout_marginTop="6dp"
+                                android:max="100"
+                                android:progress="0"
+                                android:visibility="gone" />
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <!-- ROW 1: Main Apps (YouTube, Prime Video, Netflix, Music app) -->
+                <androidx.leanback.widget.HorizontalGridView
+                    android:id="@+id/grid_row_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="146dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:paddingStart="64dp"
+                    android:paddingEnd="64dp" />
+
+                <!-- ROW 2: All Other Apps -->
+                <androidx.leanback.widget.HorizontalGridView
+                    android:id="@+id/grid_row_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="146dp"
+                    android:layout_marginTop="12dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:paddingStart="64dp"
+                    android:paddingEnd="64dp" />
 
             </LinearLayout>
-
-            <!-- Header Right: Raw Wi-Fi and Settings Glyphs (No Box, Lights up on focus) -->
-            <LinearLayout
-                android:id="@+id/header_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <!-- Wi-Fi Status Glyph -->
-                <TextView
-                    android:id="@+id/btn_wifi"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@null"
-                    android:clickable="true"
-                    android:contentDescription="Wi-Fi Settings"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:fontFamily="@font/segmdl2"
-                    android:gravity="center"
-                    android:nextFocusLeft="@+id/btn_wifi"
-                    android:nextFocusRight="@+id/btn_settings"
-                    android:nextFocusDown="@+id/grid_row_1"
-                    android:text="&#xE701;"
-                    android:textColor="@color/white_80"
-                    android:textSize="26sp" />
-
-                <!-- Settings Cogwheel Glyph -->
-                <TextView
-                    android:id="@+id/btn_settings"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="8dp"
-                    android:background="@null"
-                    android:clickable="true"
-                    android:contentDescription="TV Settings"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:fontFamily="@font/segmdl2"
-                    android:gravity="center"
-                    android:nextFocusLeft="@+id/btn_wifi"
-                    android:nextFocusRight="@+id/btn_settings"
-                    android:nextFocusDown="@+id/grid_row_1"
-                    android:text="&#xE713;"
-                    android:textColor="@color/white_80"
-                    android:textSize="26sp" />
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
-        <!-- STRICTLY TWO HORIZONTAL ROWS (With ~1cm bottom spacing) -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/header_layout"
-            android:layout_marginTop="16dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:orientation="vertical">
-
-            <!-- ROW 1: Main Apps (YouTube, Prime Video, Netflix, Music app) -->
-            <androidx.leanback.widget.HorizontalGridView
-                android:id="@+id/grid_row_1"
-                android:layout_width="match_parent"
-                android:layout_height="156dp"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:paddingStart="64dp"
-                android:paddingEnd="120dp" />
-
-            <!-- ROW 2: All Other Apps -->
-            <androidx.leanback.widget.HorizontalGridView
-                android:id="@+id/grid_row_2"
-                android:layout_width="match_parent"
-                android:layout_height="156dp"
-                android:layout_marginTop="12dp"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:paddingStart="64dp"
-                android:paddingEnd="120dp" />
 
         </LinearLayout>
 
-    </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
 
-    <!-- 3. Ambient Screensaver Layer (Windows 10 Lock Screen Aesthetic) -->
+</com.metrolauncher.tv.MaskedScrollContainer>
+
+    <!-- Fixed Header Scrim Backdrop (Ensures greeting & controls remain crisp above gliding rows) -->
+    <View
+        android:id="@+id/header_gradient_scrim"
+        android:layout_width="match_parent"
+        android:layout_height="145dp"
+        android:layout_gravity="top"
+        android:background="@drawable/bg_header_gradient_scrim"
+        android:clickable="false"
+        android:focusable="false" />
+
+    <!-- Fixed Bottom Scrim Backdrop: Subtle, small grounding fade on the bottom edge -->
+    <View
+        android:id="@+id/bottom_gradient_scrim"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_bottom_gradient_scrim"
+        android:clickable="false"
+        android:focusable="false" />
+
+    <!-- Focus Selector Overlay: Drawn above header scrim so selector outline is unaffected by the fade effect -->
+    <com.metrolauncher.tv.FocusSelectorOverlayView
+        android:id="@+id/focus_selector_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="18dp"
+        android:translationZ="18dp"
+        android:clickable="false"
+        android:focusable="false"
+        android:visibility="gone" />
+
+    <!-- FIXED TOP HEADER: Greeting, Home Now Playing & Header Controls -->
+    <RelativeLayout
+                android:id="@+id/header_layout"
+        android:layout_gravity="top"
+        android:layout_marginTop="26dp"
+        android:elevation="20dp"
+        android:translationZ="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:paddingStart="64dp"
+                android:paddingEnd="64dp">
+
+                <!-- Header Left: Greeting & Date/Time in Segoe UI -->
+                <LinearLayout
+                    android:id="@+id/header_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_greeting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/segoeui"
+                        android:shadowColor="#CC000000"
+                        android:shadowDx="0"
+                        android:shadowDy="2"
+                        android:shadowRadius="8"
+                        android:text="@string/greeting_morning"
+                        android:textColor="@color/white"
+                        android:textSize="36sp"
+                        android:textStyle="normal" />
+
+
+                </LinearLayout>
+
+                <!-- Header Right: Perfectly aligned Wi-Fi, Ambient Mode & Settings Controls -->
+                <LinearLayout
+                    android:id="@+id/header_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- Wi-Fi Status Glyph -->
+                    <TextView
+                        android:id="@+id/btn_wifi"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:contentDescription="Wi-Fi Settings"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="@font/segmdl2"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:nextFocusDown="@+id/grid_row_1"
+                        android:text="&#xE701;"
+                        android:textColor="@color/white_80"
+                        android:textSize="24sp" />
+
+                    <!-- Ambient Mode Screensaver Shortcut -->
+                    <TextView
+                        android:id="@+id/btn_ambient"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginStart="6dp"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:contentDescription="Ambient Mode Screensaver"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="@font/segmdl2"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:nextFocusDown="@+id/grid_row_1"
+                        android:text="&#xEB9F;"
+                        android:textColor="@color/white_80"
+                        android:textSize="24sp" />
+
+                    <!-- Settings Cogwheel Glyph -->
+                    <TextView
+                        android:id="@+id/btn_settings"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginStart="6dp"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:contentDescription="TV Settings"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="@font/segmdl2"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:nextFocusDown="@+id/grid_row_1"
+                        android:text="&#xE713;"
+                        android:textColor="@color/white_80"
+                        android:textSize="24sp" />
+
+                    <!-- Launcher Configuration Button (Revealed when navigating Right beyond TV Settings) -->
+                    <FrameLayout
+                        android:id="@+id/config_button_container"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginStart="6dp"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/btn_launcher_config"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/bg_acrylic_tile_dark"
+                            android:clickable="true"
+                            android:contentDescription="Launcher Configuration"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:fontFamily="@font/segmdl2"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:nextFocusDown="@+id/grid_row_1"
+                            android:text="&#xE713;"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+    <!-- 4. Ambient Screensaver Layer (Windows 10 Lock Screen Aesthetic with slide transition) -->
     <FrameLayout
         android:id="@+id/ambient_screensaver_layer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:elevation="60dp"
+        android:translationZ="60dp"
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone">
@@ -191,9 +925,78 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#26000000" />
+            android:background="#2E000000" />
 
-        <!-- Top-Right Attribution (Windows 10 Spotlight Style) -->
+        <!-- TOP-LEFT: Subtle Cardless Ambient Mode Now Playing Indicator (Per user specification) -->
+        <LinearLayout
+            android:id="@+id/ambient_now_playing_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="36dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <!-- Rounded Album Artwork -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="14dp"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="0dp">
+
+                <ImageView
+                    android:id="@+id/img_ambient_np_art"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#40000000"
+                    android:contentDescription="Now Playing Artwork"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_music_note" />
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Track Info in Crisp Segoe UI with enhanced contrast shadow -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_ambient_np_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui"
+                    android:shadowColor="#E6000000"
+                    android:shadowDx="0"
+                    android:shadowDy="2"
+                    android:shadowRadius="8"
+                    android:text="Track Title"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_ambient_np_artist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/segoeui"
+                    android:shadowColor="#E6000000"
+                    android:shadowDx="0"
+                    android:shadowDy="2"
+                    android:shadowRadius="8"
+                    android:text="Artist Name"
+                    android:textColor="@color/white_80"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Top-Right Attribution (Windows 10 Spotlight Style with localized contrast) -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -208,10 +1011,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoeui"
-                android:shadowColor="#CC000000"
+                android:shadowColor="#E6000000"
                 android:shadowDx="0"
                 android:shadowDy="2"
-                android:shadowRadius="6"
+                android:shadowRadius="8"
                 android:text="Bing Daily Wallpaper"
                 android:textColor="@color/white"
                 android:textSize="17sp" />
@@ -222,17 +1025,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/segoeui"
-                android:shadowColor="#CC000000"
+                android:shadowColor="#E6000000"
                 android:shadowDx="0"
                 android:shadowDy="2"
-                android:shadowRadius="6"
-                android:text="Windows 10 Lock Screen"
+                android:shadowRadius="8"
+                android:text="Metro TV Ambient"
                 android:textColor="@color/white_80"
                 android:textSize="13sp" />
 
         </LinearLayout>
 
-        <!-- Bottom-Left: Windows 10 Prominent Clock & Date (Closer to left-bottom corner with reduced gap) -->
+        <!-- Bottom-Left: Windows 10 Prominent Clock & Date with strong contrast shadows -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -249,10 +1052,10 @@
                 android:fontFamily="@font/segoeui"
                 android:includeFontPadding="false"
                 android:letterSpacing="-0.02"
-                android:shadowColor="#B3000000"
+                android:shadowColor="#E6000000"
                 android:shadowDx="0"
-                android:shadowDy="4"
-                android:shadowRadius="12"
+                android:shadowDy="3"
+                android:shadowRadius="14"
                 android:text="1:45 PM"
                 android:textColor="@color/white"
                 android:textSize="80sp" />
@@ -265,13 +1068,45 @@
                 android:layout_marginTop="-4dp"
                 android:fontFamily="@font/segoeui"
                 android:includeFontPadding="false"
-                android:shadowColor="#B3000000"
+                android:shadowColor="#E6000000"
                 android:shadowDx="0"
                 android:shadowDy="3"
-                android:shadowRadius="8"
+                android:shadowRadius="10"
                 android:text="Wednesday, 21 October"
                 android:textColor="@color/white"
                 android:textSize="23sp" />
+
+            <!-- Weather Display in Ambient Mode -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_ambient_weather_icon"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Ambient Weather Icon"
+                    android:src="@drawable/ic_meteo_partly_cloudy" />
+
+                <TextView
+                    android:id="@+id/tv_ambient_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui"
+                    android:includeFontPadding="false"
+                    android:shadowColor="#E6000000"
+                    android:shadowDx="0"
+                    android:shadowDy="2"
+                    android:shadowRadius="8"
+                    android:text="27°C • Partly Cloudy"
+                    android:textColor="@color/white_80"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

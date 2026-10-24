@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cw_tile_root"
+    android:layout_width="250dp"
+    android:layout_height="140dp"
+    android:layout_marginEnd="16dp"
+    android:background="@drawable/bg_acrylic_tile_dark"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <!-- Poster / Thumbnail Artwork -->
+    <ImageView
+        android:id="@+id/cw_img_poster"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Poster"
+        android:scaleType="centerCrop" />
+
+    <!-- Gradient overlay for text contrast and vibrant thumbnail -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_card_bottom_gradient" />
+
+    <!-- Tile Content -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="12dp">
+
+        <!-- Top Row: App Label badge -->
+        <TextView
+            android:id="@+id/cw_txt_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#80000000"
+            android:fontFamily="@font/segoeui"
+            android:paddingStart="6dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="2dp"
+            android:textColor="@color/white_80"
+            android:textSize="11sp" />
+
+        <!-- Play glyph badge on top-right -->
+        <TextView
+            android:id="@+id/cw_glyph_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/segmdl2"
+            android:text="&#xE768;"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <!-- Bottom details: Title, Episode/Subtitle -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/cw_txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/segoeui"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/cw_txt_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/segoeui"
+                android:maxLines="1"
+                android:textColor="@color/white_80"
+                android:textSize="12sp" />
+
+            <!-- Progress Bar -->
+            <ProgressBar
+                android:id="@+id/cw_progress_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="6dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="@color/metro_youtube_red" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

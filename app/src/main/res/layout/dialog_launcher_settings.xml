@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#99000000"
+    android:clickable="true"
+    android:focusable="false">
+
+    <ScrollView
+        android:layout_width="560dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:scrollbars="none"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:id="@+id/settings_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_acrylic_tile_dark"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:padding="26dp">
+
+            <!-- Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="Launcher Settings"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/segoeui"
+                android:text="Customize performance modes, appearance, and weather"
+                android:textColor="@color/white_60"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/white_15" />
+
+            <!-- SECTION 1: PERFORMANCE MODES -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="PERFORMANCE MODE"
+                android:textColor="@color/white_80"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btn_mode_perf"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="Performance"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/btn_mode_balanced"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="Balanced"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/btn_mode_smooth"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="Smooth"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_perf_mode_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/segoeui"
+                android:text="Balanced: Standard lightweight TV transitions"
+                android:textColor="@color/white_60"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/white_15" />
+
+            <!-- SECTION: FOCUS SELECTOR ANIMATION -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="FOCUS SELECTOR ANIMATION"
+                android:textColor="@color/white_80"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btn_selector_breathing"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="Breathing Glow"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/btn_selector_pulse"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="Pulse"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/btn_selector_static"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="Static"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_selector_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/segoeui"
+                android:text="Breathing Glow: Gentle radiant glow and sinusoidal border pulsation"
+                android:textColor="@color/white_60"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/white_15" />
+
+            <!-- SECTION 2: TILE APPEARANCE & TRANSPARENCY -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="TILE COLOR &amp; TRANSPARENCY"
+                android:textColor="@color/white_80"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <!-- Color Mode Selection -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btn_tile_color_default"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="Default Acrylic"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/btn_tile_color_wallpaper"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="Wallpaper Color"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <!-- WALLPAPER COLOR PALETTE PREVIEWS (Visible only when Wallpaper Color is selected) -->
+            <LinearLayout
+                android:id="@+id/container_wallpaper_themes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txt_wallpaper_themes_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui"
+                    android:text="Wallpaper Color Palettes (Select to Preview, Enter to Confirm):"
+                    android:textColor="@color/white_80"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/row_wallpaper_palettes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal" />
+
+            </LinearLayout>
+
+            <!-- Transparency 5 Options -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btn_trans_20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="20%"
+                    android:textColor="@color/white_80"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/btn_trans_40"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="40%"
+                    android:textColor="@color/white_80"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/btn_trans_60"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="60%"
+                    android:textColor="@color/white_80"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/btn_trans_80"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="80%"
+                    android:textColor="@color/white_80"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/btn_trans_100"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="100%"
+                    android:textColor="@color/white_80"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/white_15" />
+
+            <!-- SECTION 3: HOME NOW PLAYING WIDGET -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="NOW PLAYING TILE WIDGET"
+                android:textColor="@color/white_80"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/btn_toggle_now_playing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_header_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:paddingStart="14dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="14dp"
+                android:paddingBottom="6dp">
+
+                <TextView
+                    android:id="@+id/txt_now_playing_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui"
+                    android:text="Now Playing Tile: Enabled"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_now_playing_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/segoeui"
+                    android:text="Displays active music track &amp; artwork in the top tile row. Click to toggle."
+                    android:textColor="@color/white_60"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_grant_np_permission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_header_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:paddingStart="14dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="14dp"
+                android:paddingBottom="6dp">
+
+                <TextView
+                    android:id="@+id/txt_np_permission_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui"
+                    android:text="Notification Access: Checking..."
+                    android:textColor="#FFCC00"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_np_permission_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/segoeui"
+                    android:text="Required for Spotify &amp; music playback detection. Click to open Android Settings."
+                    android:textColor="@color/white_80"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <!-- CONTINUE WATCHING ROW -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/segoeui"
+                android:text="CONTINUE WATCHING ROW"
+                android:textColor="@color/white_80"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/btn_toggle_continue_watching"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_header_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:paddingStart="14dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="14dp"
+                android:paddingBottom="6dp">
+
+                <TextView
+                    android:id="@+id/txt_continue_watching_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui"
+                    android:text="Continue Watching: Enabled"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_continue_watching_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/segoeui"
+                    android:text="Displays recent movies &amp; shows with resume thumbnails below apps. Click to toggle."
+                    android:textColor="@color/white_60"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/white_15" />
+
+            <!-- SECTION 4: WEATHER LOCATION -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="WEATHER LOCATION"
+                android:textColor="@color/white_80"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_weather_city_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/segoeui"
+                android:text="Current: Aluva, Kerala"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <!-- Location input row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edit_weather_location"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:fontFamily="@font/segoeui"
+                    android:hint="Type city name..."
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white_40"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/btn_save_weather_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:text="Save"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- Quick Presets -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/chip_aluva"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="Aluva"
+                    android:textColor="@color/white_80"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/chip_kochi"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="Kochi"
+                    android:textColor="@color/white_80"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/chip_london"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="London"
+                    android:textColor="@color/white_80"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/chip_nyc"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="New York"
+                    android:textColor="@color/white_80"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/chip_tokyo"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_header_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="Tokyo"
+                    android:textColor="@color/white_80"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/white_15" />
+
+            <!-- SECTION 5: WALLPAPER -->
+            <TextView
+                android:id="@+id/btn_config_wallpaper"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="@drawable/bg_header_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/segoeui"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="Choose Custom Wallpaper (JPG/PNG/GIF)"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/btn_config_reset_wallpaper"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_header_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/segoeui"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="Reset to Default Wallpaper"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/white_15" />
+
+            <!-- SECTION 6: AMBIENT MODE & SCREENSAVER -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="AMBIENT MODE &amp; SCREENSAVER"
+                android:textColor="@color/white_80"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/btn_config_system_screensaver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_header_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:paddingStart="14dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="14dp"
+                android:paddingBottom="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui"
+                    android:text="System Screen Saver Settings"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/segoeui"
+                    android:text="Set system screensaver to 'Never' to let Metro TV's Ambient Mode take over. Click to open."
+                    android:textColor="@color/white_60"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/white_15" />
+
+            <!-- SECTION 7: ABOUT -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="ABOUT"
+                android:textColor="@color/white_80"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/segoeui"
+                android:lineSpacingExtra="2dp"
+                android:text="Inspired by classic Metro and fluid tile design, this Android TV launcher brings together bold tiles, clean typography, fluid transitions, custom wallpapers, and Ambient Mode."
+                android:textColor="@color/white_80"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/segoeui"
+                android:lineSpacingExtra="2dp"
+                android:text="Designed with minimal resource usage in mind, it aims to keep your TV responsive without unnecessary CPU, memory consumption. The launcher respects your privacy and doesn't collect or transmit your personal data."
+                android:textColor="@color/white_80"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/segoeui"
+                android:text="Made with ❤️ by Melvinfused"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_about_github"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="@font/segoeui"
+                android:text="GitHub: https://github.com/Melvinfused"
+                android:textColor="@color/white_60"
+                android:textSize="12sp" />
+
+            <!-- Close Button -->
+            <TextView
+                android:id="@+id/btn_config_close"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_header_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/segoeui"
+                android:gravity="center"
+                android:text="Close (Back)"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

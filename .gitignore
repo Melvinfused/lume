@@ -1,0 +1,41 @@
+# Gradle & Build Output
+.gradle/
+build/
+app/build/
+*.apk
+*.aab
+*.ap_
+output-metadata.json
+
+# Local Configuration & Secrets (Never commit SDK paths or local keystores)
+local.properties
+*.keystore
+*.jks
+signing.properties
+
+# Local Personal Assets (Git-ignored: keep local copies for personal builds)
+/local-assets/fonts/*.ttf
+/local-assets/fonts/*.otf
+/local-assets/fonts/*.woff*
+!/local-assets/fonts/README.md
+/local-assets/icons/*.png
+/local-assets/icons/*.jpg
+/local-assets/icons/*.jpeg
+/local-assets/icons/*.webp
+!/local-assets/icons/README.md
+
+# Debug & Temporary Dumps
+*.log
+logcat_dump.txt
+captures/
+.externalNativeBuild/
+.cxx/
+
+# IDE & Editor Metadata
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+PROGRESS.md
+scratch/

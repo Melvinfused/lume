@@ -49,6 +49,10 @@ data class AppItem(
                 lower.contains("auramusic") || lower.contains("music") -> Color.parseColor("#008299") // Solid Cyan
                 lower.contains("file") || lower.contains("storage") -> Color.parseColor("#008A00") // Solid Emerald
                 lower.contains("stremio") -> Color.parseColor("#5A4582") // Solid Purple
+                lower.contains("hotstar") || lower.contains("jiohotstar") -> Color.parseColor("#0C1A30")
+                lower.contains("sonyliv") -> Color.parseColor("#151821")
+                lower.contains("jiocinema") -> Color.parseColor("#D8005A")
+                lower.contains("zee5") -> Color.parseColor("#1E0C2C")
                 lower.contains("tunein") -> Color.parseColor("#1B2A4A")
                 lower.contains("yablio") || lower.contains("sendfiles") -> Color.parseColor("#00695C")
                 else -> {

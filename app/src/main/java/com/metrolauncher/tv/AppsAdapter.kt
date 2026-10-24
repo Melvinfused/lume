@@ -13,7 +13,9 @@ class AppsAdapter(
     private val apps: List<AppItem>,
     private val isTopRow: Boolean = false,
     private val onNavigateToHeader: ((Int) -> Unit)? = null,
-    private val onItemClick: (AppItem) -> Unit
+    private val onNavigateLeft: ((Int) -> Unit)? = null,
+    private val onItemClick: (AppItem) -> Unit,
+    private val onItemLongClick: ((AppItem) -> Unit)? = null
 ) : RecyclerView.Adapter<AppsAdapter.AppViewHolder>() {
 
     class AppViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -31,55 +33,55 @@ class AppsAdapter(
     override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
         val app = apps[position]
 
-        // 1. Transparent Dark Acrylic Background is handled by @drawable/bg_acrylic_tile_dark on root
+        // 1. Transparent Acrylic Background with configured color and transparency
+        holder.root.background = LauncherConfig.createTileBackgroundDrawable(holder.root.context)
         holder.tileBody.setBackgroundColor(Color.TRANSPARENT)
 
-        // 2. Projectivy transparent icon or system fallback
+        // 2. Vector brand logo or official system icon
         if (app.brandLogoResId != null) {
             holder.logoView.setImageResource(app.brandLogoResId)
         } else {
             holder.logoView.setImageDrawable(app.systemIcon)
         }
 
-        // 3. Crisp white typography for dark acrylic surface
+        // 3. Crisp themed typography for dark acrylic surface
         holder.labelView.text = app.label
-        holder.labelView.setTextColor(Color.WHITE)
+        holder.labelView.setTextColor(LauncherConfig.getTilePrimaryTextColor(holder.root.context))
 
-        // 4. TV focus scale and elevation animation
-        holder.root.setOnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                v.animate()
-                    .scaleX(1.05f)
-                    .scaleY(1.05f)
-                    .translationZ(12f)
-                    .setDuration(120)
-                    .start()
-            } else {
-                v.animate()
-                    .scaleX(1.0f)
-                    .scaleY(1.0f)
-                    .translationZ(0f)
-                    .setDuration(120)
-                    .start()
-            }
+        // 4. TV focus: Keep tile completely stationary underneath selector overlay
+        holder.root.setOnFocusChangeListener { v, _ ->
+            v.scaleX = 1.0f
+            v.scaleY = 1.0f
+            v.translationZ = 0f
         }
 
-        // 5. Explicit D-Pad navigation to Header (Wi-Fi and Settings) from Top Row
-        if (isTopRow && onNavigateToHeader != null) {
-            holder.root.setOnKeyListener { _, keyCode, event ->
-                if (keyCode == KeyEvent.KEYCODE_DPAD_UP && event.action == KeyEvent.ACTION_DOWN) {
+
+        // 5. Remote control key listener: D-pad navigation, Menu button for context menu, and Left from first item
+        holder.root.setOnKeyListener { _, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN) {
+                if (keyCode == KeyEvent.KEYCODE_MENU) {
+                    onItemLongClick?.invoke(app)
+                    return@setOnKeyListener true
+                }
+                if (isTopRow && keyCode == KeyEvent.KEYCODE_DPAD_UP && onNavigateToHeader != null) {
                     onNavigateToHeader.invoke(position)
-                    true
-                } else {
-                    false
+                    return@setOnKeyListener true
+                }
+                if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT && position == 0 && onNavigateLeft != null) {
+                    onNavigateLeft.invoke(position)
+                    return@setOnKeyListener true
                 }
             }
-        } else {
-            holder.root.setOnKeyListener(null)
+            false
         }
 
         holder.root.setOnClickListener {
             onItemClick(app)
+        }
+
+        holder.root.setOnLongClickListener {
+            onItemLongClick?.invoke(app)
+            true
         }
     }
 

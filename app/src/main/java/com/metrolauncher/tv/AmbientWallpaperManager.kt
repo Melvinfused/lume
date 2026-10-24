@@ -167,7 +167,7 @@ object AmbientWallpaperManager {
 
         val file = File(wallpaperDir, entryToUse.localFileName)
         if (file.exists() && file.length() > 0L) {
-            val bitmap = BitmapFactory.decodeFile(file.absolutePath)
+            val bitmap = decodeOptimizedBitmap(file.absolutePath)
             if (bitmap != null) {
                 return Pair(entryToUse, bitmap)
             }
@@ -177,12 +177,34 @@ object AmbientWallpaperManager {
         for (item in list) {
             val f = File(wallpaperDir, item.localFileName)
             if (f.exists() && f.length() > 0L) {
-                val b = BitmapFactory.decodeFile(f.absolutePath)
+                val b = decodeOptimizedBitmap(f.absolutePath)
                 if (b != null) return Pair(item, b)
             }
         }
 
         return null
+    }
+
+    private fun decodeOptimizedBitmap(path: String): Bitmap? {
+        val options = BitmapFactory.Options().apply {
+            inJustDecodeBounds = true
+        }
+        BitmapFactory.decodeFile(path, options)
+
+        var sample = 1
+        if (options.outWidth > 1920 || options.outHeight > 1080) {
+            sample = 2
+        }
+
+        val decodeOptions = BitmapFactory.Options().apply {
+            inSampleSize = sample
+            inPreferredConfig = Bitmap.Config.RGB_565
+        }
+        return try {
+            BitmapFactory.decodeFile(path, decodeOptions)
+        } catch (e: OutOfMemoryError) {
+            null
+        }
     }
 
     private fun downloadFile(urlStr: String, dest: File) {
@@ -206,9 +228,15 @@ object AmbientWallpaperManager {
 
     fun isOnline(context: Context): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager ?: return false
-        @Suppress("DEPRECATION")
-        val info = cm.activeNetworkInfo
-        return info != null && info.isConnected
+        return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            val network = cm.activeNetwork
+            val caps = cm.getNetworkCapabilities(network)
+            caps?.hasCapability(android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
+        } else {
+            @Suppress("DEPRECATION")
+            val info = cm.activeNetworkInfo
+            info != null && info.isConnected
+        }
     }
 
     private fun loadMetadata(context: Context): List<WallpaperEntry> {
