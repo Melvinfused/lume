@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "AndroidTVMetroLauncher"
+rootProject.name = "Lume"
 include(":app")

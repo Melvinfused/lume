@@ -1,4 +1,4 @@
-# Optimization and obfuscation rules for Metro TV Launcher
+# Optimization and obfuscation rules for Lume
 
 # Keep Leanback widgets and attributes
 -keep class androidx.leanback.** { *; }

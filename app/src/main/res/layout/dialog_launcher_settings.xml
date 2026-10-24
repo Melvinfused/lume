@@ -739,7 +739,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/segoeui"
-                    android:text="Set system screensaver to 'Never' to let Metro TV's Ambient Mode take over. Click to open."
+                    android:text="Set system screensaver to 'Never' to let Lume's Ambient Mode take over. Click to open."
                     android:textColor="@color/white_60"
                     android:textSize="11sp" />
 

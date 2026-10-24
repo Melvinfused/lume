@@ -1029,7 +1029,7 @@
                 android:shadowDx="0"
                 android:shadowDy="2"
                 android:shadowRadius="8"
-                android:text="Metro TV Ambient"
+                android:text="Lume Ambient"
                 android:textColor="@color/white_80"
                 android:textSize="13sp" />
 

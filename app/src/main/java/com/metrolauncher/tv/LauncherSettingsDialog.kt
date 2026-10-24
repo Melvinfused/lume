@@ -492,11 +492,11 @@ class LauncherSettingsDialog(
         if (granted) {
             txtNpPermissionTitle.text = "Notification Access: Granted ✓"
             txtNpPermissionTitle.setTextColor(Color.parseColor("#4CAF50"))
-            txtNpPermissionDesc.text = "Metro TV has permission to detect Spotify and music media sessions."
+            txtNpPermissionDesc.text = "Lume has permission to detect Spotify and music media sessions."
         } else {
             txtNpPermissionTitle.text = "Notification Access: Required for Spotify"
             txtNpPermissionTitle.setTextColor(Color.parseColor("#FFCC00"))
-            txtNpPermissionDesc.text = "Click to open Android Settings and grant Notification Access to Metro TV."
+            txtNpPermissionDesc.text = "Click to open Android Settings and grant Notification Access to Lume."
         }
     }
 

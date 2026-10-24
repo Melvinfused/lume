@@ -1,4 +1,4 @@
-# Android TV Launcher (Metro TV)
+# Lume (Android TV Launcher)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform: Android TV](https://img.shields.io/badge/Platform-Android%20TV%20%7C%20Google%20TV-green.svg)](https://developer.android.com/tv)
@@ -69,16 +69,16 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 #### Standard Android TV
 1. Press the **HOME** button on your remote.
 2. A prompt will appear: "Select a Home app".
-3. Choose **Metro TV** and select **Always**.
-*(Alternatively, navigate to TV **Settings > Apps > Default apps > Home app** and select Metro TV).*
+3. Choose **Lume** and select **Always**.
+*(Alternatively, navigate to TV **Settings > Apps > Default apps > Home app** and select Lume).*
 
 #### Google TV / Fire TV (Where Stock Launcher is Locked)
-Some Google TV and Fire OS devices restrict changing the default launcher from the GUI. You can set Metro TV as your primary launcher via ADB or helper utilities:
+Some Google TV and Fire OS devices restrict changing the default launcher from the GUI. You can set Lume as your primary launcher via ADB or helper utilities:
 - **ADB Command:**
   ```bash
   adb shell cmd package set-home-activity com.metrolauncher.tv/.MainActivity
   ```
-- **Launcher Remappers:** Apps like **Button Mapper** or **Projectivy Launcher Accessibility Service** can be used to remap the remote's Home button to open Metro TV instantly.
+- **Launcher Remappers:** Apps like **Button Mapper** or **Projectivy Launcher Accessibility Service** can be used to remap the remote's Home button to open Lume instantly.
 
 ---
 
@@ -90,7 +90,7 @@ Metro TV keeps the dashboard clutter-free by tucking its configuration options n
 2. Navigate **Right** to highlight the TV Settings gear icon (`btn_settings`).
 3. Press **Right** once more on your D-pad!
 4. The hidden **Launcher Config** button will smoothly slide into view from the right.
-5. Press **OK / Center** to open the Metro TV Configuration modal.
+5. Press **OK / Center** to open the Lume Configuration modal.
 
 *(Note: Navigating away from the button or pressing Back will smoothly slide it back out of sight to preserve the minimalist interface).*
 
@@ -104,8 +104,8 @@ The Now Playing tile integrates with active music players (such as Spotify, YouT
 2. Scroll to the **Now Playing Tile Widget** section.
 3. Click on the **Notification Access** item.
 4. Android will open the **Special App Access > Notification Access** settings menu.
-5. Find **Metro TV** in the list and toggle the switch to **Allowed**.
-6. Return to Metro TV. Play music in your favorite app—the Now Playing tile will now automatically display track info and cover art!
+5. Find **Lume** in the list and toggle the switch to **Allowed**.
+6. Return to Lume. Play music in your favorite app—the Now Playing tile will now automatically display track info and cover art!
 
 ---
 
@@ -117,7 +117,7 @@ The weather tile automatically fetches live temperatures and forecasts from the 
 2. Scroll down to the **Weather Location** section.
 3. To set a custom city:
    - Click the text box, enter your city name (e.g. `London`, `Tokyo`, `Berlin`, `New York`), and select **Save**.
-   - Metro TV will geocode the city coordinates and immediately update the live tile.
+   - Lume will geocode the city coordinates and immediately update the live tile.
 4. Quick Presets: Alternatively, click any of the preset location chips for instant configuration.
 
 ---
@@ -153,9 +153,9 @@ You can customize your home screen apps directly from the remote:
 
 ### 8. How to Use Metro Ambient Mode as Your Screensaver (Overriding System Screensaver)
 
-Android TV and Google TV include a stock system screensaver ("Backdrop" / "Colors" / "Ambient Mode") that activates after 5–15 minutes of inactivity. When the system screensaver starts, it launches over Metro TV and hides the custom launcher backdrop.
+Android TV and Google TV include a stock system screensaver ("Backdrop" / "Colors" / "Ambient Mode") that activates after 5–15 minutes of inactivity. When the system screensaver starts, it launches over Lume and hides the custom launcher backdrop.
 
-To let **Metro TV's Ambient Mode** serve as your primary screensaver (featuring rotating 4K wallpapers, dimming, live weather, formatted time, and Spotify/music playback cover art) without being interrupted:
+To let **Lume's Ambient Mode** serve as your primary screensaver (featuring rotating 4K wallpapers, dimming, live weather, formatted time, and Spotify/music playback cover art) without being interrupted:
 
 #### Option A: Via Launcher Settings (Fastest)
 1. Open **Launcher Config** (navigate to the top Settings gear and press **Right** on the D-Pad).
@@ -164,7 +164,7 @@ To let **Metro TV's Ambient Mode** serve as your primary screensaver (featuring 
 4. In Android's Screen Saver settings menu:
    - Set **When to start** / **Screen saver** to **Never** (or **Turn off screen saver**).
    - Set **Turn off display** / **Energy saver** to your preferred idle duration (e.g. 1 hour, 3 hours, or never).
-5. Metro TV will now smoothly slide in its own Ambient Mode after 5 minutes of inactivity and keep the display alive and beautifully dimmed!
+5. Lume will now smoothly slide in its own Ambient Mode after 5 minutes of inactivity and keep the display alive and beautifully dimmed!
 
 #### Option B: Via TV Settings GUI
 1. Open Android TV / Google TV **Settings**.
@@ -209,8 +209,8 @@ By default, the repository is configured to build a 100% open-source APK using t
 
 ```bash
 # Clone the repository
-git clone https://github.com/Melvinfused/android-tv-launcher.git
-cd android-tv-launcher
+git clone https://github.com/Melvinfused/lume.git
+cd lume
 
 # Configure your Android SDK path
 cp local.properties.example local.properties
@@ -228,7 +228,7 @@ The compiled APK will be generated at:
 ## 🎨 Design Philosophy: Visual Completeness & Typography
 
 ### The Authentic Metro Aesthetic
-Metro TV was architected from the ground up to pay homage to the classic Windows Metro and modern Fluent design languages. Every tile margin, clock proportion, and header alignment was designed and calibrated around the exact metric proportions, tracking, and optical weights of **Segoe UI** and the icon grid of **Segoe MDL2 Assets**.
+Lume was architected from the ground up to pay homage to the classic Windows Metro and modern Fluent design languages. Every tile margin, clock proportion, and header alignment was designed and calibrated around the exact metric proportions, tracking, and optical weights of **Segoe UI** and the icon grid of **Segoe MDL2 Assets**.
 
 > **💡 Design Note on Visual Fidelity:**  
 > While the bundled open-source fonts (**Inter** and **Material Symbols**) look sleek and ensure the project remains 100% legally distributable out of the box, **the launcher feels truly complete and achieves its authentic, 1:1 intended visual identity** when rendered with genuine Segoe UI typography and MDL2 glyphs.
@@ -261,9 +261,9 @@ To maintain strict copyright compliance while enabling designers and enthusiasts
 - **In Public Releases / Distributed APKs:** **No.** You cannot legally redistribute Microsoft Segoe UI (`segoeui.ttf`) or Segoe MDL2 Assets (`segmdl2.ttf`) inside an APK or public Git repository without an explicit commercial font embedding license from Microsoft / Monotype.
 - **For Private, Personal Use on Your Own PC/Device:** Extracting fonts from `C:\Windows\Fonts\` for personal use on a non-Windows device exists in a legal grey area under Microsoft's Windows EULA (which restricts font usage to the licensed Windows operating system). While Microsoft generally does not enforce personal, non-commercial home use, distributing any build containing those files is a direct copyright infringement.
 
-### How Metro TV Solves This Legally
+### How Lume Solves This Legally
 
-To ensure that Metro TV is **100% legal, open-source, and freely distributable**, the repository does **not** bundle or require any proprietary Microsoft fonts:
+To ensure that Lume is **100% legal, open-source, and freely distributable**, the repository does **not** bundle or require any proprietary Microsoft fonts:
 
 1. **Default Open-Source Typography:**
    - **Inter Font Family:** Bundled under the [SIL Open Font License 1.1](licenses/OFL.txt). Provides a crisp, modern, legible UI matching the clean aesthetic.
@@ -280,7 +280,7 @@ To ensure that Metro TV is **100% legal, open-source, and freely distributable**
 ## 🏛️ Architecture & Project Structure
 
 ```text
-android-tv-launcher/
+lume/
 ├── app/src/main/
 │   ├── java/com/metrolauncher/tv/
 │   │   ├── MainActivity.kt               # TV dashboard, D-pad navigation, widget timers, ambient mode

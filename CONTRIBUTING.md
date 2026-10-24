@@ -1,6 +1,6 @@
-# Contributing to Android TV Launcher
+# Contributing to Lume
 
-Thank you for your interest in contributing to the Android TV Launcher! We welcome bug reports, feature suggestions, documentation improvements, and code contributions.
+Thank you for your interest in contributing to Lume (Android TV Launcher)! We welcome bug reports, feature suggestions, documentation improvements, and code contributions.
 
 ---
 
@@ -17,8 +17,8 @@ Thank you for your interest in contributing to the Android TV Launcher! We welco
 ### Setup
 1. Fork and clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/android-tv-launcher.git
-   cd android-tv-launcher
+   git clone https://github.com/Melvinfused/lume.git
+   cd lume
    ```
 2. Copy the sample SDK properties template:
    ```bash

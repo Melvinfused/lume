@@ -599,8 +599,8 @@ class MainActivity : AppCompatActivity() {
             tvAmbientCopyright.text = if (entry.copyright.isNotEmpty()) entry.copyright else "Bing Daily Wallpaper"
         } else {
             imgAmbientWallpaper.setImageResource(R.drawable.bg_tv_wallpaper)
-            tvAmbientTitle.text = "Metro TV Ambient"
-            tvAmbientCopyright.text = "Metro TV Launcher"
+            tvAmbientTitle.text = "Lume Ambient"
+            tvAmbientCopyright.text = "Lume"
         }
     }
 
