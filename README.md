@@ -34,7 +34,8 @@ A lightweight, elegant, and blazing-fast Android TV launcher inspired by Windows
 
 ## 📱 Compatibility
 
-- **Target Platforms:** Android TV, Google TV, and Android-powered streaming boxes/sticks (Chromecast with Google TV, Nvidia Shield, Xiaomi TV Box, Fire TV, Mecool, onn. Google TV).
+- **Target Platforms:** Android TV and Google TV devices (Chromecast with Google TV, Nvidia Shield, Xiaomi TV Box, Mecool, onn. Google TV, Sony/TCL/Hisense Android TVs, etc.).
+  - *Note:* Fire TV (Fire OS) is currently **untested**. While the APK may install on Fire OS, Amazon does not provide standard Android TV Leanback integrations and actively blocks custom default launchers on recent Fire OS updates.
 - **Supported Android Versions:** Android 5.0 Lollipop (API 21) through Android 14 (API 34).
 - **Input Devices:** Standard TV infrared/Bluetooth remotes, air mice, game controllers, and keyboards.
 
@@ -72,8 +73,8 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 3. Choose **Lume** and select **Always**.
 *(Alternatively, navigate to TV **Settings > Apps > Default apps > Home app** and select Lume).*
 
-#### Google TV / Fire TV (Where Stock Launcher is Locked)
-Some Google TV and Fire OS devices restrict changing the default launcher from the GUI. You can set Lume as your primary launcher via ADB or helper utilities:
+#### Google TV (Where Stock Launcher is Locked)
+Some Google TV and OEM-locked TV devices restrict changing the default launcher from the graphical settings. You can set Lume as your primary launcher via ADB or helper utilities:
 - **ADB Command:**
   ```bash
   adb shell cmd package set-home-activity com.metrolauncher.tv/.MainActivity
